@@ -417,7 +417,7 @@
         <div class="glass" style="padding:16px;">
           <div style="border-radius: var(--radius-sm); overflow:hidden; border:1px solid rgba(255,255,255,.10); background: rgba(0,0,0,.25); aspect-ratio: 4/3;">
             <img
-              src="assets/IMG_DIT.JPG"
+              src="assets/IMG_DIT_mobile.JPG"
               alt="Ingest workflow"
               style="width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1.02) contrast(1.04);"
               onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=&quot;padding:18px;color:rgba(255,255,255,.75);font-size:13px;text-align:center;&quot;>Missing <strong>assets/IMG_DIT.JPG</strong></div>';"
@@ -433,6 +433,17 @@
 
   <main class="wrap">
 
+ <!-- NEW: Banner image above Showcase -->
+    <div class="banner" aria-label="Showcase banner">
+      <div class="frame">
+        <img
+          src="assets/IMG_%20Cameras-Interview.png"
+          alt="Production banner"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=&quot;padding:18px;color:rgba(255,255,255,.75);font-size:13px;text-align:center;&quot;>Missing <strong>assets/IMG_%20Cameras-Interview.png</strong><br/>If your filename has no space, rename it or update the path in index.html.</div>';"
+        />
+      </div>
+    </div>
+    
     <!-- SERVICES (kept minimal – removed redundant subtext line per request) -->
     <section id="services">
       <div class="sectionHead">
@@ -474,17 +485,7 @@
       </div>
     </section>
 
-    <!-- NEW: Banner image above Showcase -->
-    <div class="banner" aria-label="Showcase banner">
-      <div class="frame">
-        <img
-          src="assets/IMG_%20Cameras-Interview.png"
-          alt="Production banner"
-          onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=&quot;padding:18px;color:rgba(255,255,255,.75);font-size:13px;text-align:center;&quot;>Missing <strong>assets/IMG_%20Cameras-Interview.png</strong><br/>If your filename has no space, rename it or update the path in index.html.</div>';"
-        />
-      </div>
-    </div>
-
+   
     <!-- UPDATED SHOWCASE: 3 visuals -->
     <section id="showcase">
       <div class="sectionHead">
