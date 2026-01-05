@@ -7,422 +7,585 @@
   <title>AV Creative</title>
 
   <style>
-:root{
-  --teal:#006666;
-  --ink:#333333;
-  --bg:#0b1414;
-  --card:#0f1d1d;
-  --muted:rgba(255,255,255,.75);
-  --line:rgba(255,255,255,.10);
-  --shadow: 0 10px 30px rgba(0,0,0,.35);
-  --radius: 18px;
-  --max: 1050px;
-}
-
+    :root{
+      --accent:#006666;
+      --ink:#333333;
+      --bg:#070A0B;
+      --panel:#0C1112;
+      --panel2:#0E1516;
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.72);
+      --line:rgba(255,255,255,.10);
+      --glass: rgba(10,14,15,.65);
+      --shadow: 0 18px 55px rgba(0,0,0,.55);
+      --radius: 20px;
+      --max: 1160px;
+    }
 
     *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
-      color: #fff;
-      background: radial-gradient(1200px 800px at 20% 0%, rgba(0,96,96,.35), transparent 60%),
-                  radial-gradient(900px 700px at 90% 20%, rgba(0,96,96,.18), transparent 55%),
-                  var(--bg);
+      background:
+        radial-gradient(900px 520px at 15% 5%, rgba(0,102,102,.35), transparent 55%),
+        radial-gradient(760px 520px at 90% 20%, rgba(0,102,102,.18), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.03), transparent 18%),
+        var(--bg);
+      color: var(--text);
       line-height:1.55;
     }
+
     a{ color:inherit; text-decoration:none; }
-    a:hover{ opacity:.9; }
+    a:hover{ opacity:.92; }
 
-    .wrap{ max-width: var(--max); margin:0 auto; padding: 28px 18px; }
+    .wrap{ max-width:var(--max); margin:0 auto; padding:0 18px; }
+    .topPad{ padding-top: 86px; } /* space for sticky nav */
 
-    /* Header */
+    /* NAV (Glyph-ish: clean, sticky, glass) */
     header{
-      position: sticky;
-      top:0;
-      z-index:50;
+      position:fixed; inset:0 0 auto 0;
+      z-index:100;
+      border-bottom:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(7,10,11,.90), rgba(7,10,11,.55));
       backdrop-filter: blur(10px);
-      background: rgba(11,20,20,.65);
-      border-bottom: 1px solid var(--line);
     }
     .nav{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      padding: 14px 18px;
-      max-width: var(--max);
-      margin:0 auto;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:14px;
+      padding: 14px 0;
     }
     .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      min-width: 220px;
+      display:flex; align-items:center; gap:12px;
+      min-width: 240px;
     }
     .brand img{
-      width:44px; height:44px;
-      border-radius: 999px;
+      width:42px; height:42px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
       box-shadow: var(--shadow);
       background: rgba(0,0,0,.2);
     }
-    .brand .title{
+    .brand .name{
       display:flex; flex-direction:column;
-      line-height:1.1;
+      line-height:1.05;
     }
-    .brand .title strong{ letter-spacing:.5px; }
-    .brand .title span{ font-size: 12px; color: var(--muted); }
+    .brand .name strong{
+      letter-spacing: .14em;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+    .brand .name span{
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: .04em;
+      margin-top: 4px;
+    }
 
-    nav ul{
-      list-style:none;
-      display:flex;
-      gap:18px;
-      margin:0; padding:0;
-      align-items:center;
-      flex-wrap:wrap;
-      justify-content:flex-end;
+    .navLinks{
+      display:flex; align-items:center; gap:10px;
+      flex-wrap:wrap; justify-content:flex-end;
     }
-    nav a{
-      color: rgba(255,255,255,.86);
-      font-size: 14px;
-      padding: 8px 10px;
+    .navLinks a{
+      font-size: 13px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.82);
+      padding: 10px 12px;
       border-radius: 999px;
     }
-    nav a:hover{ background: rgba(255,255,255,.06); }
+    .navLinks a:hover{ background: rgba(255,255,255,.06); }
 
     .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
+      display:inline-flex; align-items:center; justify-content:center;
       gap:10px;
-      padding: 10px 14px;
+      padding: 11px 14px;
       border-radius: 999px;
-      border: 1px solid rgba(0,96,96,.55);
-      background: rgba(0,96,96,.20);
-      box-shadow: 0 10px 25px rgba(0,0,0,.25);
-      font-weight: 600;
-      font-size: 14px;
+      border: 1px solid rgba(0,102,102,.6);
+      background: rgba(0,102,102,.20);
+      box-shadow: 0 14px 40px rgba(0,0,0,.35);
+      font-weight: 700;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      font-size: 12px;
       white-space:nowrap;
     }
-    .btn:hover{ background: rgba(0,96,96,.28); }
+    .btn:hover{ background: rgba(0,102,102,.28); }
 
-    /* Hero */
-    .hero{
-      padding: 44px 0 10px;
-    }
-    .heroGrid{
-      display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap: 22px;
-      align-items:stretch;
-    }
-    .card{
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-    }
-    .heroMain{
-      padding: 26px;
-      overflow:hidden;
-      position:relative;
-    }
-    .heroMain:before{
-      content:"";
-      position:absolute;
-      inset:-2px;
-      background: radial-gradient(900px 340px at 20% 10%, rgba(0,96,96,.35), transparent 55%);
-      pointer-events:none;
-    }
-    .heroMain > *{ position:relative; }
-    h1{
-      margin: 0 0 10px;
-      font-size: clamp(30px, 3.5vw, 44px);
-      line-height:1.1;
-      letter-spacing: .2px;
-    }
-    .lead{
-      margin: 0 0 18px;
-      color: var(--muted);
-      font-size: 16px;
-      max-width: 60ch;
-    }
-    .pillRow{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin: 18px 0 22px;
-    }
-    .pill{
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(0,0,0,.20);
-      padding: 8px 12px;
-      border-radius: 999px;
-      font-size: 13px;
-      color: rgba(255,255,255,.88);
-    }
-    .ctaRow{
-      display:flex;
-      flex-wrap:wrap;
-      gap:12px;
-      align-items:center;
-    }
-    .secondary{
-      border: 1px solid rgba(255,255,255,.18);
+    .btn.secondary{
+      border-color: rgba(255,255,255,.18);
       background: rgba(255,255,255,.06);
     }
 
-    .heroSide{
+    /* HERO (big image + gradient overlay) */
+    .hero{
+      position:relative;
+      border-bottom: 1px solid var(--line);
+      background: #050708;
+    }
+    .heroMedia{
+      position:absolute; inset:0;
+      background:
+        linear-gradient(90deg, rgba(7,10,11,.92) 0%, rgba(7,10,11,.70) 45%, rgba(7,10,11,.55) 100%),
+        linear-gradient(180deg, rgba(0,102,102,.20), transparent 35%),
+        url("assets/Header_Company.JPG") center/cover no-repeat;
+      filter: saturate(1.05) contrast(1.05);
+    }
+    .heroInner{
+      position:relative;
+      padding: 82px 0 70px;
+    }
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.28);
+      padding: 8px 12px;
+      border-radius: 999px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      font-size: 11px;
+      color: rgba(255,255,255,.82);
+    }
+    .dot{
+      width:8px; height:8px; border-radius:999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(0,102,102,.18);
+    }
+    h1{
+      margin: 18px 0 12px;
+      font-size: clamp(36px, 4.2vw, 62px);
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+      max-width: 16ch;
+    }
+    .lead{
+      margin: 0 0 22px;
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 72ch;
+    }
+    .heroActions{
+      display:flex; flex-wrap:wrap; gap:12px; align-items:center;
+      margin-top: 22px;
+    }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap: 18px;
+      margin-top: 26px;
+      align-items: stretch;
+    }
+    .glass{
+      background: var(--glass);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+    .stats{
       padding: 18px;
-      display:flex;
-      flex-direction:column;
+      display:grid;
       gap:12px;
     }
-    .heroImage{
-      border-radius: calc(var(--radius) - 6px);
-      border: 1px solid rgba(255,255,255,.10);
-      overflow:hidden;
-      background: rgba(0,0,0,.25);
-      min-height: 240px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-    .heroImage img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-    }
-    .note{
+    .stat{
       padding: 14px 14px;
-      border-radius: calc(var(--radius) - 6px);
+      border-radius: calc(var(--radius) - 8px);
       border: 1px solid rgba(255,255,255,.10);
       background: rgba(0,0,0,.22);
-      color: rgba(255,255,255,.84);
+    }
+    .stat strong{
+      display:block;
+      font-size: 12px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.86);
+    }
+    .stat span{
+      display:block;
+      margin-top: 6px;
+      color: var(--muted);
       font-size: 13px;
     }
 
-    /* Sections */
-    section{ padding: 26px 0; }
+    /* SECTION BASE */
+    section{ padding: 54px 0; }
+    .sectionHead{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap:18px; flex-wrap:wrap;
+      margin-bottom: 18px;
+    }
+    .eyebrow{
+      font-size: 12px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.72);
+    }
     .sectionTitle{
-      font-size: 20px;
-      margin: 0 0 10px;
-      letter-spacing:.2px;
+      margin: 8px 0 0;
+      font-size: 26px;
+      letter-spacing: -0.01em;
     }
     .sectionSub{
-      margin: 0 0 18px;
+      margin: 0;
       color: var(--muted);
-      max-width: 75ch;
+      max-width: 72ch;
+      font-size: 14px;
     }
 
+    /* CARDS (Glyph-ish tiles) */
     .grid{
       display:grid;
       grid-template-columns: repeat(12, 1fr);
       gap: 14px;
     }
-    .svc{
+    .card{
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .card:before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background: radial-gradient(600px 240px at 20% 0%, rgba(0,102,102,.18), transparent 60%);
+      pointer-events:none;
+    }
+    .card > *{ position:relative; }
+
+    .service{
       grid-column: span 6;
       padding: 18px;
+      display:flex;
+      gap:16px;
+      align-items:flex-start;
     }
-    .svc h3{
+    .serviceIcon{
+      flex: 0 0 46px;
+      width: 46px; height: 46px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,102,102,.18);
+      display:grid; place-items:center;
+      box-shadow: 0 18px 45px rgba(0,0,0,.35);
+    }
+    .serviceIcon svg{ opacity:.9; }
+    .service h3{
       margin: 0 0 8px;
-      font-size: 16px;
-      letter-spacing:.2px;
+      font-size: 14px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
     }
-    .svc p{
-      margin: 0;
+    .service p{
+      margin:0;
       color: var(--muted);
       font-size: 14px;
+      max-width: 64ch;
     }
 
-    .work{
+    .showcase{
       grid-column: span 4;
-      padding: 10px;
     }
-    .work .thumb{
-      border-radius: calc(var(--radius) - 8px);
-      overflow:hidden;
-      border: 1px solid rgba(255,255,255,.10);
+    .thumb{
+      aspect-ratio: 4/3;
       background: rgba(0,0,0,.25);
-      aspect-ratio: 4 / 3;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      overflow:hidden;
     }
-    .work img{ width:100%; height:100%; object-fit:cover; display:block; }
-    .work .cap{
-      padding: 10px 6px 4px;
-      color: rgba(255,255,255,.82);
+    .thumb img{
+      width:100%; height:100%;
+      object-fit:cover;
+      display:block;
+      transform: scale(1.01);
+      filter: saturate(1.02) contrast(1.05);
+    }
+    .cap{
+      padding: 14px 14px 16px;
+    }
+    .cap strong{
+      display:block;
+      font-size: 12px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      color: rgba(255,255,255,.88);
+    }
+    .cap span{
+      display:block;
+      color: var(--muted);
       font-size: 13px;
     }
 
-    /* Footer */
+    /* CONTACT */
+    .contactBar{
+      padding: 22px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:14px;
+      flex-wrap:wrap;
+      background:
+        radial-gradient(900px 220px at 10% 0%, rgba(0,102,102,.22), transparent 55%),
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+    }
+    .contactBar .left strong{
+      display:block;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      font-size: 12px;
+      color: rgba(255,255,255,.88);
+    }
+    .contactBar .left span{
+      display:block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 70ch;
+    }
+
     footer{
-      border-top: 1px solid var(--line);
-      padding: 22px 0 40px;
-      color: rgba(255,255,255,.70);
+      border-top:1px solid var(--line);
+      padding: 26px 0 44px;
+      color: rgba(255,255,255,.62);
       font-size: 13px;
     }
     .footRow{
-      display:flex;
-      flex-wrap:wrap;
-      gap:12px;
-      justify-content:space-between;
-      align-items:center;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px; flex-wrap:wrap;
     }
 
-    /* Responsive */
-    @media (max-width: 900px){
+    @media (max-width: 980px){
       .heroGrid{ grid-template-columns: 1fr; }
-      .svc{ grid-column: span 12; }
-      .work{ grid-column: span 12; }
-      .brand{ min-width: unset; }
+      .service{ grid-column: span 12; }
+      .showcase{ grid-column: span 12; }
+      h1{ max-width: 22ch; }
     }
   </style>
 </head>
 
 <body>
   <header>
-    <div class="nav">
-      <a class="brand" href="#top" aria-label="AV Creative home">
-        <img src="assets/logo.png" alt="AV Creative logo">
-        <div class="title">
-          <strong>AV Creative</strong>
-          <span>Ingest • Production • Post</span>
-        </div>
-      </a>
+    <div class="wrap">
+      <div class="nav">
+        <a class="brand" href="#top" aria-label="AV Creative home">
+          <img src="assets/AVC%20Circle%20Logo.png" alt="AV Creative logo">
+          <div class="name">
+            <strong>AV Creative</strong>
+            <span>Ingest • Production • Post</span>
+          </div>
+        </a>
 
-      <nav aria-label="Primary navigation">
-        <ul>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#work">Work</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><a class="btn" href="https://www.instagram.com/avc_hq/" target="_blank" rel="noopener">Instagram</a></li>
-        </ul>
-      </nav>
+        <div class="navLinks" aria-label="Primary navigation">
+          <a href="#services">Services</a>
+          <a href="#showcase">Showcase</a>
+          <a href="#contact">Contact</a>
+          <a class="btn" href="https://www.instagram.com/avc_hq/" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
     </div>
   </header>
 
-  <main id="top" class="wrap">
-    <!-- HERO -->
-    <div class="hero">
-      <div class="heroGrid">
-        <div class="card heroMain">
-          <h1>Reliable on-set ingest and polished post-production.</h1>
-          <p class="lead">
-            AV Creative supports productions with fast, organized media handling and clean editorial finishing —
-            from set to delivery.
-          </p>
-
-          <div class="pillRow" aria-label="Key offerings">
-            <div class="pill">Digital Ingest Technician</div>
-            <div class="pill">Video Production</div>
-            <div class="pill">Video Editing</div>
-            <div class="pill">Color Grading</div>
-          </div>
-
-          <div class="ctaRow">
-            <!-- Update the email address below -->
-            <a class="btn" href="mailto:hello@avcreative.co">Email</a>
-            <a class="btn secondary" href="#services">View services</a>
-          </div>
-        </div>
-
-        <aside class="card heroSide">
-          <div class="heroImage" aria-label="Hero image">
-            <!-- Optional: add assets/hero.jpg from your old Muse site -->
-            <img src="assets/hero.jpg" alt="Production still or work sample (optional)" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=&quot;padding:18px;color:rgba(255,255,255,.75);font-size:13px;text-align:center;&quot;>Add <strong>assets/hero.jpg</strong> (optional)</div>';">
-          </div>
-          <div class="note">
-            <strong>Quick note:</strong> this site is intentionally simple (fast, clean, no tracking).
-            Add or replace images anytime by updating files in <code>/assets</code>.
-          </div>
-        </aside>
-      </div>
-    </div>
-
-    <!-- SERVICES -->
-    <section id="services">
-      <h2 class="sectionTitle">Services</h2>
-      <p class="sectionSub">
-        Focused support for productions and creators. Available for short-term, day-rates, or project-based work.
+  <!-- HERO -->
+  <div id="top" class="hero">
+    <div class="heroMedia" role="img" aria-label="Header image"></div>
+    <div class="wrap heroInner topPad">
+      <div class="kicker"><span class="dot"></span> Available for projects</div>
+      <h1>On-set ingest & post finishing that stays organized and on schedule.</h1>
+      <p class="lead">
+        AV Creative supports productions from set to delivery — secure media offloads, verified backups, clean editorial,
+        and thoughtful color for a consistent final look.
       </p>
 
+      <div class="heroActions">
+        <a class="btn" href="mailto:inquire@avcreative.co">Email</a>
+        <a class="btn secondary" href="#services">View services</a>
+      </div>
+
+      <div class="heroGrid">
+        <div class="glass stats" aria-label="Highlights">
+          <div class="stat">
+            <strong>Digital Ingest Technician</strong>
+            <span>Checksum verified offloads, organized masters, and backup strategy.</span>
+          </div>
+          <div class="stat">
+            <strong>Editorial + Finishing</strong>
+            <span>Clean cuts, deliverables, and post workflow support.</span>
+          </div>
+          <div class="stat">
+            <strong>Color Grading</strong>
+            <span>Balanced, consistent looks with strong skin-tone control.</span>
+          </div>
+        </div>
+
+        <div class="glass" style="padding:16px;">
+          <div style="border-radius: calc(var(--radius) - 8px); overflow:hidden; border:1px solid rgba(255,255,255,.10); background: rgba(0,0,0,.25); aspect-ratio: 4/3;">
+            <img
+              src="assets/IMG_DIT.JPG"
+              alt="Digital ingest workflow"
+              style="width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1.02) contrast(1.04);"
+              onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=&quot;padding:18px;color:rgba(255,255,255,.75);font-size:13px;text-align:center;&quot;>Add <strong>assets/IMG_DIT.JPG</strong></div>';"
+            />
+          </div>
+          <div style="padding:12px 6px 0;color:var(--muted);font-size:13px;">
+            Quick turnaround ingest + clean handoff to post.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <!-- SERVICES -->
+    <section id="services">
+      <div class="sectionHead">
+        <div>
+          <div class="eyebrow">Services</div>
+          <h2 class="sectionTitle">Focused production + post support</h2>
+        </div>
+        <p class="sectionSub">
+          Simple, reliable help for shoots and post workflows — optimized for speed, accuracy, and consistency.
+        </p>
+      </div>
+
       <div class="grid">
-        <div class="card svc">
-          <h3>Digital Ingest Technician</h3>
-          <p>
-            Secure offloads, checksum verification, organized folder structures, reports, backups,
-            and quick turnaround for editorial.
-          </p>
+        <div class="card service">
+          <div class="serviceIcon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M4 7h16M4 12h16M4 17h10" stroke="white" stroke-opacity=".85" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div>
+            <h3>Digital Ingest Technician</h3>
+            <p>Offloads with checksum verification, structured foldering, camera reports, and multi-drive backup strategy for editorial readiness.</p>
+          </div>
         </div>
 
-        <div class="card svc">
-          <h3>Video Production</h3>
-          <p>
-            Production support for shoots: capture workflow coordination, media management, and
-            streamlined handoff to post.
-          </p>
+        <div class="card service">
+          <div class="serviceIcon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M8 7h8M6 11h12M9 15h6" stroke="white" stroke-opacity=".85" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div>
+            <h3>Video Editing</h3>
+            <p>Story-first edits with clean pacing, versioning, and deliverables for web/social/client review — organized timelines and archives.</p>
+          </div>
         </div>
 
-        <div class="card svc">
-          <h3>Video Editing</h3>
-          <p>
-            Clean story-first editing, pacing, sound cleanup, and deliverables for web/social and client review.
-          </p>
+        <div class="card service">
+          <div class="serviceIcon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M4 12a8 8 0 1 0 16 0" stroke="white" stroke-opacity=".85" stroke-width="2" stroke-linecap="round"/>
+              <path d="M12 4v8l5 3" stroke="white" stroke-opacity=".85" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <h3>Color Grading</h3>
+            <p>Balanced contrast and skin tones, shot matching, look development, and finishing polish for a consistent final image.</p>
+          </div>
         </div>
 
-        <div class="card svc">
-          <h3>Color Grading</h3>
-          <p>
-            Balanced, consistent looks with tasteful contrast and skin tones. Matching across cameras and scenes.
-          </p>
+        <div class="card service">
+          <div class="serviceIcon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M5 7h14v10H5z" stroke="white" stroke-opacity=".85" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M9 17l-2 3M15 17l2 3" stroke="white" stroke-opacity=".85" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div>
+            <h3>Video Production</h3>
+            <p>Production support for small crews and clients — workflow coordination, capture-to-post handoff, and streamlined deliverables.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- WORK -->
-    <section id="work">
-      <h2 class="sectionTitle">Work</h2>
-      <p class="sectionSub">
-        Add a few stills or frames from your previous work. (Optional — you can remove this whole section if you want.)
-      </p>
+    <!-- SHOWCASE -->
+    <section id="showcase">
+      <div class="sectionHead">
+        <div>
+          <div class="eyebrow">Showcase</div>
+          <h2 class="sectionTitle">Select visuals</h2>
+        </div>
+        <p class="sectionSub">
+          A clean, “tile” layout like Glyph — swap these images anytime by replacing files in <code>/assets</code>.
+        </p>
+      </div>
 
       <div class="grid">
-        <div class="card work">
+        <article class="card showcase">
           <div class="thumb">
-            <img src="assets/work-1.jpg" alt="Work sample 1" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=&quot;padding:18px;color:rgba(255,255,255,.75);font-size:13px;text-align:center;&quot;>Add <strong>assets/work-1.jpg</strong></div>';">
+            <img src="assets/IMG_Console_1.JPG" alt="Console / workstation image 1">
           </div>
-          <div class="cap">Sample caption (optional)</div>
-        </div>
+          <div class="cap">
+            <strong>Ingest + Workflow</strong>
+            <span>Secure, repeatable on-set media handling and post handoff.</span>
+          </div>
+        </article>
 
-        <div class="card work">
+        <article class="card showcase">
           <div class="thumb">
-            <img src="assets/work-2.jpg" alt="Work sample 2" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=&quot;padding:18px;color:rgba(255,255,255,.75);font-size:13px;text-align:center;&quot;>Add <strong>assets/work-2.jpg</strong></div>';">
+            <img src="assets/IMG_Console_2.JPG" alt="Console / workstation image 2">
           </div>
-          <div class="cap">Sample caption (optional)</div>
-        </div>
+          <div class="cap">
+            <strong>Post Finishing</strong>
+            <span>Clean editorial, revisions, and delivery-ready exports.</span>
+          </div>
+        </article>
 
-        <div class="card work">
+        <article class="card showcase">
           <div class="thumb">
-            <img src="assets/work-3.jpg" alt="Work sample 3" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=&quot;padding:18px;color:rgba(255,255,255,.75);font-size:13px;text-align:center;&quot;>Add <strong>assets/work-3.jpg</strong></div>';">
+            <img src="assets/Helix_Mag10_0367.png" alt="Storage / media image">
           </div>
-          <div class="cap">Sample caption (optional)</div>
-        </div>
+          <div class="cap">
+            <strong>Media Handling</strong>
+            <span>Fast transfers, verification, and organized archives.</span>
+          </div>
+        </article>
+
+        <article class="card showcase">
+          <div class="thumb">
+            <img src="assets/SSD_Large_Capacity_Group_BlueScreen_JS_7009.png" alt="SSD group image">
+          </div>
+          <div class="cap">
+            <strong>Speed + Reliability</strong>
+            <span>Performance-minded workflow choices that reduce friction.</span>
+          </div>
+        </article>
+
+        <article class="card showcase">
+          <div class="thumb">
+            <img src="assets/Fortis-5C_20230120_JS_7250.png" alt="Fortis image">
+          </div>
+          <div class="cap">
+            <strong>Field Ready</strong>
+            <span>Practical setups that hold up on location.</span>
+          </div>
+        </article>
+
+        <article class="card showcase">
+          <div class="thumb">
+            <img src="assets/IMG_DIT.JPG" alt="DIT image">
+          </div>
+          <div class="cap">
+            <strong>On Set Support</strong>
+            <span>Clear process, documentation, and calm execution.</span>
+          </div>
+        </article>
       </div>
     </section>
 
     <!-- CONTACT -->
     <section id="contact">
-      <h2 class="sectionTitle">Contact</h2>
-      <p class="sectionSub">
-        For availability and quotes, reach out by email or Instagram.
-      </p>
-
-      <div class="grid">
-        <div class="card svc" style="grid-column: span 12;">
-          <div class="ctaRow">
-            <!-- Update email -->
-            <a class="btn" href="mailto:hello@avcreative.co">hello@avcreative.co</a>
-            <a class="btn secondary" href="https://www.instagram.com/avc_hq/" target="_blank" rel="noopener">@avc_hq</a>
-          </div>
+      <div class="card contactBar">
+        <div class="left">
+          <strong>Contact</strong>
+          <span>For availability, day-rates, or project quotes — email or DM.</span>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <a class="btn" href="mailto:inquire@avcreative.co">inquire@avcreative.co</a>
+          <a class="btn secondary" href="https://www.instagram.com/avc_hq/" target="_blank" rel="noopener">@avc_hq</a>
         </div>
       </div>
     </section>
@@ -430,7 +593,7 @@
     <footer>
       <div class="footRow">
         <div>© <span id="y"></span> AV Creative</div>
-        <div style="display:flex; gap:12px; align-items:center;">
+        <div style="display:flex;gap:12px;align-items:center;">
           <a href="#top">Back to top</a>
           <span style="opacity:.4;">•</span>
           <a href="https://www.instagram.com/avc_hq/" target="_blank" rel="noopener">Instagram</a>
