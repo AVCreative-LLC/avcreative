@@ -12,13 +12,16 @@
       --ink:#333333;
       --bg:#070A0B;
       --panel:#0C1112;
-      --panel2:#0E1516;
       --text:rgba(255,255,255,.92);
       --muted:rgba(255,255,255,.72);
       --line:rgba(255,255,255,.10);
       --glass: rgba(10,14,15,.65);
       --shadow: 0 18px 55px rgba(0,0,0,.55);
-      --radius: 20px;
+
+      /* Less round corners (updated) */
+      --radius: 12px;
+      --radius-sm: 10px;
+
       --max: 1160px;
     }
 
@@ -40,9 +43,9 @@
     a:hover{ opacity:.92; }
 
     .wrap{ max-width:var(--max); margin:0 auto; padding:0 18px; }
-    .topPad{ padding-top: 86px; } /* space for sticky nav */
+    .topPad{ padding-top: 86px; }
 
-    /* NAV (Glyph-ish: clean, sticky, glass) */
+    /* NAV */
     header{
       position:fixed; inset:0 0 auto 0;
       z-index:100;
@@ -91,7 +94,7 @@
       text-transform: uppercase;
       color: rgba(255,255,255,.82);
       padding: 10px 12px;
-      border-radius: 999px;
+      border-radius: 999px; /* keep nav pills round */
     }
     .navLinks a:hover{ background: rgba(255,255,255,.06); }
 
@@ -99,7 +102,7 @@
       display:inline-flex; align-items:center; justify-content:center;
       gap:10px;
       padding: 11px 14px;
-      border-radius: 999px;
+      border-radius: 999px; /* keep buttons pill-like */
       border: 1px solid rgba(0,102,102,.6);
       background: rgba(0,102,102,.20);
       box-shadow: 0 14px 40px rgba(0,0,0,.35);
@@ -116,7 +119,7 @@
       background: rgba(255,255,255,.06);
     }
 
-    /* HERO (big image + gradient overlay) */
+    /* HERO */
     .hero{
       position:relative;
       border-bottom: 1px solid var(--line);
@@ -188,7 +191,7 @@
     }
     .stat{
       padding: 14px 14px;
-      border-radius: calc(var(--radius) - 8px);
+      border-radius: var(--radius-sm);
       border: 1px solid rgba(255,255,255,.10);
       background: rgba(0,0,0,.22);
     }
@@ -206,7 +209,7 @@
       font-size: 13px;
     }
 
-    /* SECTION BASE */
+    /* SECTIONS */
     section{ padding: 54px 0; }
     .sectionHead{
       display:flex; align-items:flex-end; justify-content:space-between;
@@ -231,7 +234,7 @@
       font-size: 14px;
     }
 
-    /* CARDS (Glyph-ish tiles) */
+    /* Cards */
     .grid{
       display:grid;
       grid-template-columns: repeat(12, 1fr);
@@ -254,36 +257,28 @@
     }
     .card > *{ position:relative; }
 
-    .service{
-      grid-column: span 6;
-      padding: 18px;
-      display:flex;
-      gap:16px;
-      align-items:flex-start;
+    /* Banner between sections */
+    .banner{
+      margin: 18px 0 0;
     }
-    .serviceIcon{
-      flex: 0 0 46px;
-      width: 46px; height: 46px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(0,102,102,.18);
-      display:grid; place-items:center;
-      box-shadow: 0 18px 45px rgba(0,0,0,.35);
+    .banner .frame{
+      border-radius: var(--radius);
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow);
+      background: rgba(0,0,0,.25);
+      aspect-ratio: 21 / 7;
+      min-height: 220px;
     }
-    .serviceIcon svg{ opacity:.9; }
-    .service h3{
-      margin: 0 0 8px;
-      font-size: 14px;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-    }
-    .service p{
-      margin:0;
-      color: var(--muted);
-      font-size: 14px;
-      max-width: 64ch;
+    .banner img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      filter: saturate(1.02) contrast(1.05);
     }
 
+    /* Showcase */
     .showcase{
       grid-column: span 4;
     }
@@ -328,6 +323,7 @@
       background:
         radial-gradient(900px 220px at 10% 0%, rgba(0,102,102,.22), transparent 55%),
         linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      border-radius: var(--radius);
     }
     .contactBar .left strong{
       display:block;
@@ -357,9 +353,9 @@
 
     @media (max-width: 980px){
       .heroGrid{ grid-template-columns: 1fr; }
-      .service{ grid-column: span 12; }
       .showcase{ grid-column: span 12; }
       h1{ max-width: 22ch; }
+      .banner .frame{ aspect-ratio: 16/9; }
     }
   </style>
 </head>
@@ -377,7 +373,6 @@
         </a>
 
         <div class="navLinks" aria-label="Primary navigation">
-          <a href="#services">Services</a>
           <a href="#showcase">Showcase</a>
           <a href="#contact">Contact</a>
           <a class="btn" href="https://www.instagram.com/avc_hq/" target="_blank" rel="noopener">Instagram</a>
@@ -399,36 +394,37 @@
 
       <div class="heroActions">
         <a class="btn" href="mailto:inquire@avcreative.co">Email</a>
-        <a class="btn secondary" href="#services">View services</a>
+        <a class="btn secondary" href="#showcase">View services</a>
       </div>
 
+      <!-- UPDATED: Three categories under the buttons -->
       <div class="heroGrid">
         <div class="glass stats" aria-label="Highlights">
           <div class="stat">
-            <strong>Digital Ingest Technician</strong>
-            <span>Checksum verified offloads, organized masters, and backup strategy.</span>
+            <strong>Ingest + Workflow</strong>
+            <span>Checksum verified offloads, organized masters, and clean handoff to post.</span>
           </div>
           <div class="stat">
-            <strong>Editorial + Finishing</strong>
-            <span>Clean cuts, deliverables, and post workflow support.</span>
+            <strong>Field Ready</strong>
+            <span>Practical, reliable setups that hold up on location and stay efficient.</span>
           </div>
           <div class="stat">
-            <strong>Color Grading</strong>
-            <span>Balanced, consistent looks with strong skin-tone control.</span>
+            <strong>Post Finishing</strong>
+            <span>Editorial support, revisions, and delivery-ready exports with consistency.</span>
           </div>
         </div>
 
         <div class="glass" style="padding:16px;">
-          <div style="border-radius: calc(var(--radius) - 8px); overflow:hidden; border:1px solid rgba(255,255,255,.10); background: rgba(0,0,0,.25); aspect-ratio: 4/3;">
+          <div style="border-radius: var(--radius-sm); overflow:hidden; border:1px solid rgba(255,255,255,.10); background: rgba(0,0,0,.25); aspect-ratio: 4/3;">
             <img
               src="assets/IMG_DIT.JPG"
-              alt="Digital ingest workflow"
+              alt="Ingest workflow"
               style="width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1.02) contrast(1.04);"
-              onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=&quot;padding:18px;color:rgba(255,255,255,.75);font-size:13px;text-align:center;&quot;>Add <strong>assets/IMG_DIT.JPG</strong></div>';"
+              onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=&quot;padding:18px;color:rgba(255,255,255,.75);font-size:13px;text-align:center;&quot;>Missing <strong>assets/IMG_DIT.JPG</strong></div>';"
             />
           </div>
           <div style="padding:12px 6px 0;color:var(--muted);font-size:13px;">
-            Quick turnaround ingest + clean handoff to post.
+            Secure ingest + clear workflow from set to post.
           </div>
         </div>
       </div>
@@ -436,141 +432,103 @@
   </div>
 
   <main class="wrap">
-    <!-- SERVICES -->
+
+    <!-- SERVICES (kept minimal – removed redundant subtext line per request) -->
     <section id="services">
       <div class="sectionHead">
         <div>
           <div class="eyebrow">Services</div>
-          <h2 class="sectionTitle">Focused production + post support</h2>
+          <h2 class="sectionTitle">Digital ingest, production, editorial, and color</h2>
         </div>
-        <p class="sectionSub">
-          Simple, reliable help for shoots and post workflows — optimized for speed, accuracy, and consistency.
-        </p>
+        <!-- Removed: “Focused production + post support” line -->
       </div>
 
       <div class="grid">
-        <div class="card service">
-          <div class="serviceIcon" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-              <path d="M4 7h16M4 12h16M4 17h10" stroke="white" stroke-opacity=".85" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div>
-            <h3>Digital Ingest Technician</h3>
-            <p>Offloads with checksum verification, structured foldering, camera reports, and multi-drive backup strategy for editorial readiness.</p>
-          </div>
+        <div class="card" style="grid-column: span 6; padding: 18px;">
+          <div class="eyebrow">Digital Ingest Technician</div>
+          <p class="sectionSub" style="margin-top:10px;">
+            Offloads with checksum verification, structured foldering, camera reports, and multi-drive backup strategy.
+          </p>
         </div>
 
-        <div class="card service">
-          <div class="serviceIcon" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-              <path d="M8 7h8M6 11h12M9 15h6" stroke="white" stroke-opacity=".85" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div>
-            <h3>Video Editing</h3>
-            <p>Story-first edits with clean pacing, versioning, and deliverables for web/social/client review — organized timelines and archives.</p>
-          </div>
+        <div class="card" style="grid-column: span 6; padding: 18px;">
+          <div class="eyebrow">Video Production</div>
+          <p class="sectionSub" style="margin-top:10px;">
+            Production support and capture-to-post handoff optimized for speed, clarity, and consistency.
+          </p>
         </div>
 
-        <div class="card service">
-          <div class="serviceIcon" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-              <path d="M4 12a8 8 0 1 0 16 0" stroke="white" stroke-opacity=".85" stroke-width="2" stroke-linecap="round"/>
-              <path d="M12 4v8l5 3" stroke="white" stroke-opacity=".85" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div>
-            <h3>Color Grading</h3>
-            <p>Balanced contrast and skin tones, shot matching, look development, and finishing polish for a consistent final image.</p>
-          </div>
+        <div class="card" style="grid-column: span 6; padding: 18px;">
+          <div class="eyebrow">Video Editing</div>
+          <p class="sectionSub" style="margin-top:10px;">
+            Story-first editorial, versioning, clean timelines, and delivery-ready exports.
+          </p>
         </div>
 
-        <div class="card service">
-          <div class="serviceIcon" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-              <path d="M5 7h14v10H5z" stroke="white" stroke-opacity=".85" stroke-width="2" stroke-linejoin="round"/>
-              <path d="M9 17l-2 3M15 17l2 3" stroke="white" stroke-opacity=".85" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div>
-            <h3>Video Production</h3>
-            <p>Production support for small crews and clients — workflow coordination, capture-to-post handoff, and streamlined deliverables.</p>
-          </div>
+        <div class="card" style="grid-column: span 6; padding: 18px;">
+          <div class="eyebrow">Color Grading</div>
+          <p class="sectionSub" style="margin-top:10px;">
+            Shot matching, look development, and finishing polish with strong skin tone control.
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- SHOWCASE -->
+    <!-- NEW: Banner image above Showcase -->
+    <div class="banner" aria-label="Showcase banner">
+      <div class="frame">
+        <img
+          src="assets/IMG_%20Cameras-Interview.png"
+          alt="Production banner"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=&quot;padding:18px;color:rgba(255,255,255,.75);font-size:13px;text-align:center;&quot;>Missing <strong>assets/IMG_%20Cameras-Interview.png</strong><br/>If your filename has no space, rename it or update the path in index.html.</div>';"
+        />
+      </div>
+    </div>
+
+    <!-- UPDATED SHOWCASE: 3 visuals -->
     <section id="showcase">
       <div class="sectionHead">
         <div>
           <div class="eyebrow">Showcase</div>
-          <h2 class="sectionTitle">Select visuals</h2>
+          <h2 class="sectionTitle">Ingest • Field • Finishing</h2>
         </div>
         <p class="sectionSub">
-          A clean, “tile” layout like Glyph — swap these images anytime by replacing files in <code>/assets</code>.
+          Three focused categories that match your workflow from set to delivery.
         </p>
       </div>
 
       <div class="grid">
         <article class="card showcase">
           <div class="thumb">
-            <img src="assets/IMG_Console_1.JPG" alt="Console / workstation image 1">
+            <img src="assets/IMG_DIT.JPG" alt="Ingest + Workflow">
           </div>
           <div class="cap">
             <strong>Ingest + Workflow</strong>
-            <span>Secure, repeatable on-set media handling and post handoff.</span>
+            <span>Verified offloads, clean structure, and reliable handoff to post.</span>
           </div>
         </article>
 
         <article class="card showcase">
           <div class="thumb">
-            <img src="assets/IMG_Console_2.JPG" alt="Console / workstation image 2">
-          </div>
-          <div class="cap">
-            <strong>Post Finishing</strong>
-            <span>Clean editorial, revisions, and delivery-ready exports.</span>
-          </div>
-        </article>
-
-        <article class="card showcase">
-          <div class="thumb">
-            <img src="assets/Helix_Mag10_0367.png" alt="Storage / media image">
-          </div>
-          <div class="cap">
-            <strong>Media Handling</strong>
-            <span>Fast transfers, verification, and organized archives.</span>
-          </div>
-        </article>
-
-        <article class="card showcase">
-          <div class="thumb">
-            <img src="assets/SSD_Large_Capacity_Group_BlueScreen_JS_7009.png" alt="SSD group image">
-          </div>
-          <div class="cap">
-            <strong>Speed + Reliability</strong>
-            <span>Performance-minded workflow choices that reduce friction.</span>
-          </div>
-        </article>
-
-        <article class="card showcase">
-          <div class="thumb">
-            <img src="assets/Fortis-5C_20230120_JS_7250.png" alt="Fortis image">
+            <img
+              src="assets/CF-BX36_1500px_7383_Lifestyle_Loaded-Street.png"
+              alt="Field Ready"
+              onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=&quot;padding:18px;color:rgba(255,255,255,.75);font-size:13px;text-align:center;&quot;>Missing <strong>assets/CF-BX36_1500px_7383_Lifestyle_Loaded-Street.png</strong></div>';"
+            />
           </div>
           <div class="cap">
             <strong>Field Ready</strong>
-            <span>Practical setups that hold up on location.</span>
+            <span>Practical, durable setups built to keep moving on location.</span>
           </div>
         </article>
 
         <article class="card showcase">
           <div class="thumb">
-            <img src="assets/IMG_DIT.JPG" alt="DIT image">
+            <img src="assets/Fortis-5C_20230120_JS_7250.png" alt="Post Finishing">
           </div>
           <div class="cap">
-            <strong>On Set Support</strong>
-            <span>Clear process, documentation, and calm execution.</span>
+            <strong>Post Finishing</strong>
+            <span>Editorial polish, revisions, and delivery-ready exports.</span>
           </div>
         </article>
       </div>
