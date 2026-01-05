@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="AV Creative — Digital Ingest Technician, Video Production, Video Editing, Color Grading." />
+  <title>AV Creative</title>
+
+  <style>
+:root{
+  --teal:#006666;
+  --ink:#333333;
+  --bg:#0b1414;
+  --card:#0f1d1d;
+  --muted:rgba(255,255,255,.75);
+  --line:rgba(255,255,255,.10);
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+  --radius: 18px;
+  --max: 1050px;
+}
+
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+      color: #fff;
+      background: radial-gradient(1200px 800px at 20% 0%, rgba(0,96,96,.35), transparent 60%),
+                  radial-gradient(900px 700px at 90% 20%, rgba(0,96,96,.18), transparent 55%),
+                  var(--bg);
+      line-height:1.55;
+    }
+    a{ color:inherit; text-decoration:none; }
+    a:hover{ opacity:.9; }
+
+    .wrap{ max-width: var(--max); margin:0 auto; padding: 28px 18px; }
+
+    /* Header */
+    header{
+      position: sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(11,20,20,.65);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding: 14px 18px;
+      max-width: var(--max);
+      margin:0 auto;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width: 220px;
+    }
+    .brand img{
+      width:44px; height:44px;
+      border-radius: 999px;
+      box-shadow: var(--shadow);
+      background: rgba(0,0,0,.2);
+    }
+    .brand .title{
+      display:flex; flex-direction:column;
+      line-height:1.1;
+    }
+    .brand .title strong{ letter-spacing:.5px; }
+    .brand .title span{ font-size: 12px; color: var(--muted); }
+
+    nav ul{
+      list-style:none;
+      display:flex;
+      gap:18px;
+      margin:0; padding:0;
+      align-items:center;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    nav a{
+      color: rgba(255,255,255,.86);
+      font-size: 14px;
+      padding: 8px 10px;
+      border-radius: 999px;
+    }
+    nav a:hover{ background: rgba(255,255,255,.06); }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,96,96,.55);
+      background: rgba(0,96,96,.20);
+      box-shadow: 0 10px 25px rgba(0,0,0,.25);
+      font-weight: 600;
+      font-size: 14px;
+      white-space:nowrap;
+    }
+    .btn:hover{ background: rgba(0,96,96,.28); }
+
+    /* Hero */
+    .hero{
+      padding: 44px 0 10px;
+    }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 22px;
+      align-items:stretch;
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .heroMain{
+      padding: 26px;
+      overflow:hidden;
+      position:relative;
+    }
+    .heroMain:before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background: radial-gradient(900px 340px at 20% 10%, rgba(0,96,96,.35), transparent 55%);
+      pointer-events:none;
+    }
+    .heroMain > *{ position:relative; }
+    h1{
+      margin: 0 0 10px;
+      font-size: clamp(30px, 3.5vw, 44px);
+      line-height:1.1;
+      letter-spacing: .2px;
+    }
+    .lead{
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 60ch;
+    }
+    .pillRow{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin: 18px 0 22px;
+    }
+    .pill{
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.20);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      color: rgba(255,255,255,.88);
+    }
+    .ctaRow{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      align-items:center;
+    }
+    .secondary{
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+    }
+
+    .heroSide{
+      padding: 18px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .heroImage{
+      border-radius: calc(var(--radius) - 6px);
+      border: 1px solid rgba(255,255,255,.10);
+      overflow:hidden;
+      background: rgba(0,0,0,.25);
+      min-height: 240px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .heroImage img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+    .note{
+      padding: 14px 14px;
+      border-radius: calc(var(--radius) - 6px);
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.22);
+      color: rgba(255,255,255,.84);
+      font-size: 13px;
+    }
+
+    /* Sections */
+    section{ padding: 26px 0; }
+    .sectionTitle{
+      font-size: 20px;
+      margin: 0 0 10px;
+      letter-spacing:.2px;
+    }
+    .sectionSub{
+      margin: 0 0 18px;
+      color: var(--muted);
+      max-width: 75ch;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+    }
+    .svc{
+      grid-column: span 6;
+      padding: 18px;
+    }
+    .svc h3{
+      margin: 0 0 8px;
+      font-size: 16px;
+      letter-spacing:.2px;
+    }
+    .svc p{
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .work{
+      grid-column: span 4;
+      padding: 10px;
+    }
+    .work .thumb{
+      border-radius: calc(var(--radius) - 8px);
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.25);
+      aspect-ratio: 4 / 3;
+    }
+    .work img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .work .cap{
+      padding: 10px 6px 4px;
+      color: rgba(255,255,255,.82);
+      font-size: 13px;
+    }
+
+    /* Footer */
+    footer{
+      border-top: 1px solid var(--line);
+      padding: 22px 0 40px;
+      color: rgba(255,255,255,.70);
+      font-size: 13px;
+    }
+    .footRow{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px){
+      .heroGrid{ grid-template-columns: 1fr; }
+      .svc{ grid-column: span 12; }
+      .work{ grid-column: span 12; }
+      .brand{ min-width: unset; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="nav">
+      <a class="brand" href="#top" aria-label="AV Creative home">
+        <img src="assets/logo.png" alt="AV Creative logo">
+        <div class="title">
+          <strong>AV Creative</strong>
+          <span>Ingest • Production • Post</span>
+        </div>
+      </a>
+
+      <nav aria-label="Primary navigation">
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a class="btn" href="https://www.instagram.com/avc_hq/" target="_blank" rel="noopener">Instagram</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top" class="wrap">
+    <!-- HERO -->
+    <div class="hero">
+      <div class="heroGrid">
+        <div class="card heroMain">
+          <h1>Reliable on-set ingest and polished post-production.</h1>
+          <p class="lead">
+            AV Creative supports productions with fast, organized media handling and clean editorial finishing —
+            from set to delivery.
+          </p>
+
+          <div class="pillRow" aria-label="Key offerings">
+            <div class="pill">Digital Ingest Technician</div>
+            <div class="pill">Video Production</div>
+            <div class="pill">Video Editing</div>
+            <div class="pill">Color Grading</div>
+          </div>
+
+          <div class="ctaRow">
+            <!-- Update the email address below -->
+            <a class="btn" href="mailto:hello@avcreative.co">Email</a>
+            <a class="btn secondary" href="#services">View services</a>
+          </div>
+        </div>
+
+        <aside class="card heroSide">
+          <div class="heroImage" aria-label="Hero image">
+            <!-- Optional: add assets/hero.jpg from your old Muse site -->
+            <img src="assets/hero.jpg" alt="Production still or work sample (optional)" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=&quot;padding:18px;color:rgba(255,255,255,.75);font-size:13px;text-align:center;&quot;>Add <strong>assets/hero.jpg</strong> (optional)</div>';">
+          </div>
+          <div class="note">
+            <strong>Quick note:</strong> this site is intentionally simple (fast, clean, no tracking).
+            Add or replace images anytime by updating files in <code>/assets</code>.
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <h2 class="sectionTitle">Services</h2>
+      <p class="sectionSub">
+        Focused support for productions and creators. Available for short-term, day-rates, or project-based work.
+      </p>
+
+      <div class="grid">
+        <div class="card svc">
+          <h3>Digital Ingest Technician</h3>
+          <p>
+            Secure offloads, checksum verification, organized folder structures, reports, backups,
+            and quick turnaround for editorial.
+          </p>
+        </div>
+
+        <div class="card svc">
+          <h3>Video Production</h3>
+          <p>
+            Production support for shoots: capture workflow coordination, media management, and
+            streamlined handoff to post.
+          </p>
+        </div>
+
+        <div class="card svc">
+          <h3>Video Editing</h3>
+          <p>
+            Clean story-first editing, pacing, sound cleanup, and deliverables for web/social and client review.
+          </p>
+        </div>
+
+        <div class="card svc">
+          <h3>Color Grading</h3>
+          <p>
+            Balanced, consistent looks with tasteful contrast and skin tones. Matching across cameras and scenes.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORK -->
+    <section id="work">
+      <h2 class="sectionTitle">Work</h2>
+      <p class="sectionSub">
+        Add a few stills or frames from your previous work. (Optional — you can remove this whole section if you want.)
+      </p>
+
+      <div class="grid">
+        <div class="card work">
+          <div class="thumb">
+            <img src="assets/work-1.jpg" alt="Work sample 1" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=&quot;padding:18px;color:rgba(255,255,255,.75);font-size:13px;text-align:center;&quot;>Add <strong>assets/work-1.jpg</strong></div>';">
+          </div>
+          <div class="cap">Sample caption (optional)</div>
+        </div>
+
+        <div class="card work">
+          <div class="thumb">
+            <img src="assets/work-2.jpg" alt="Work sample 2" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=&quot;padding:18px;color:rgba(255,255,255,.75);font-size:13px;text-align:center;&quot;>Add <strong>assets/work-2.jpg</strong></div>';">
+          </div>
+          <div class="cap">Sample caption (optional)</div>
+        </div>
+
+        <div class="card work">
+          <div class="thumb">
+            <img src="assets/work-3.jpg" alt="Work sample 3" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=&quot;padding:18px;color:rgba(255,255,255,.75);font-size:13px;text-align:center;&quot;>Add <strong>assets/work-3.jpg</strong></div>';">
+          </div>
+          <div class="cap">Sample caption (optional)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <h2 class="sectionTitle">Contact</h2>
+      <p class="sectionSub">
+        For availability and quotes, reach out by email or Instagram.
+      </p>
+
+      <div class="grid">
+        <div class="card svc" style="grid-column: span 12;">
+          <div class="ctaRow">
+            <!-- Update email -->
+            <a class="btn" href="mailto:hello@avcreative.co">hello@avcreative.co</a>
+            <a class="btn secondary" href="https://www.instagram.com/avc_hq/" target="_blank" rel="noopener">@avc_hq</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footRow">
+        <div>© <span id="y"></span> AV Creative</div>
+        <div style="display:flex; gap:12px; align-items:center;">
+          <a href="#top">Back to top</a>
+          <span style="opacity:.4;">•</span>
+          <a href="https://www.instagram.com/avc_hq/" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
